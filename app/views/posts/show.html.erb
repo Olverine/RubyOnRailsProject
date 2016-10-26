@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @post.user %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Post:</strong>
+  <%= @post.post %>
+</p>
+
+<p>
+  <strong>Votes:</strong>
+  <%= @post.votes %>
+</p>
+
+<p>
+  <strong>Categories:</strong>
+  <% @post.categories.each do |i| %>
+  <%= link_to Category.find(i).name, posts_path + "?cat=" + Category.find(i).id.to_s %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

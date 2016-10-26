@@ -1,0 +1,1 @@
+json.partial! "categories_posts/categories_post", categories_post: @categories_post

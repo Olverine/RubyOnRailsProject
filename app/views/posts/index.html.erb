@@ -1,0 +1,72 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_tag("", method: "get") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q, params['q']) %>
+  <%= select_tag "category", options_from_collection_for_select(Category.all, 'id', 'name', params["category"]), :include_blank => true %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+
+
+<h1>Posts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Title</th>
+      <th>Post</th>
+      <th>Votes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <% postsToShow = [] %>
+
+  <% if params["category"].present? && params["category"] != nil %>
+    <% if params['q'].present? && params['q'] != nil %>
+      <% postsToShow = Category.find(params["category"]).posts.where('title = :s OR post = :s OR user = :s', :s=>params['q']) %>
+    <% else %>
+      <% postsToShow = Category.find(params["category"]).posts %>
+    <% end %>
+
+    <h1>
+    <%= Category.find(params["category"]).name %>
+    </h1>
+  <% elsif params['q'].present? && params['q'] != nil %>
+    <% postsToShow = @posts.where('title = :s OR post = :s OR user = :s', :s=>params['q']) %>
+  <% else %>
+    <% postsToShow = @posts %>
+  <% end %>
+
+  <% if !postsToShow[0].present? %>
+
+    <strong>No posts found :(</strong>
+    <br>
+    <br>
+
+  <% else %>
+
+  <% puts(postsToShow.inspect) %>
+
+    <tbody>
+      <% postsToShow.each do |post| %>
+        <tr>
+          <td><%= post.user %></td>
+          <td><%= post.title %></td>
+          <td><%= post.post %></td>
+          <td><%= post.votes %></td>
+          <td><%= link_to 'Show', post %></td>
+          <td><%= link_to 'Edit', edit_post_path(post) %></td>
+          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  <% end %>
+</table>
+
+<br>
+
+<%= link_to 'New Post', new_post_path %>

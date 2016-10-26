@@ -1,0 +1,16 @@
+id,user,title,post,votes,created_at,updated_at
+1,Oliver,Titel,"Sublime Text 3 is currently in beta. The latest build is 3126.
+
+OS X (10.7 or later is required)
+Windows - also available as a portable version
+Windows 64 bit - also available as a portable version
+Ubuntu 64 bit - also available as a tarball for other Linux distributions.
+Ubuntu 32 bit - also available as a tarball for other Linux distributions.
+Sublime Text may be downloaded and evaluated for free, however a license must be purchased for continued use. There is currently no enforced time limit for the evaluation.
+
+For notification about new versions, follow sublimehq on twitter.
+
+Even more bleeding-edge versions are available in the dev builds.
+
+Sublime Text 2 is also still available.
+",5,"2016-10-26 12:25:36.176099","2016-10-26 12:25:36.176099"
